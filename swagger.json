@@ -125,9 +125,9 @@
         ],
         "responses": {
           "200": {
-            "description": "User is updated",
+            "description": "Contact is updated",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/Contact"
             }
           }
         }
