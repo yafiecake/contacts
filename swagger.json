@@ -1,0 +1,172 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Contact API",
+    "description": "API made for Stratpoint NodeJS tutorial and assessment",
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/errawn/contacts"
+    }
+  },
+  "host": "localhost:8000",
+  "basePath": "",
+  "tags": [
+    {
+      "name": "Contact",
+      "description": "API for contacts"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/contacts": {
+      "post": {
+        "tags": [
+          "Contact"
+        ],
+        "description": "Create new contact",
+        "parameters": [
+          {
+            "name": "contact",
+            "in": "body",
+            "description": "Contact that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Contact"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "New contact is created",
+            "schema": {
+              "$ref": "#/definitions/Contact"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Contact"
+        ],
+        "summary": "Get all contacts",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Contacts"
+            }
+          }
+        }
+      }
+    },
+    "/contacts/{contactId}": {
+      "parameters": [
+        {
+          "name": "contactId",
+          "in": "path",
+          "required": true,
+          "description": "ID of contact that we want to find",
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Contact"
+        ],
+        "summary": "Get contact with given ID",
+        "responses": {
+          "200": {
+            "description": "Contact is found",
+            "schema": {
+              "$ref": "#/definitions/Contact"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete contact with given ID",
+        "tags": [
+          "Contact"
+        ],
+        "responses": {
+          "200": {
+            "description": "Contact is deleted",
+            "schema": {
+              "$ref": "#/definitions/Contact"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update contact with give ID",
+        "tags": [
+          "Contact"
+        ],
+        "parameters": [
+          {
+            "name": "contact",
+            "in": "body",
+            "description": "Contact with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Contact"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is updated",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Contact": {
+      "required": [
+        "first_name",
+        "last_name",
+        "address",
+        "email_address",
+        "contact_number"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "email_address": {
+          "type": "string"
+        },
+        "contact_number": {
+          "type": "string"
+        }
+      }
+    },
+    "Contacts": {
+      "type": "array",
+      "$ref": "#/definitions/Contact"
+    }
+  }
+}

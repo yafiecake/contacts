@@ -37,7 +37,7 @@ module.exports = (app, db) => {
         email_address,
         contact_number
       })
-      res.json(contact)
+      res.status(201).json(contact)
     } catch (err) {
       res.status(422).json(err)
     }
