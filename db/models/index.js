@@ -14,6 +14,7 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 }
 else if (process.env.DATABASE_URL) {
+  console.log('using the production database_url')
   sequelize = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',
     protocol: 'postgres',
