@@ -10,8 +10,20 @@ const db = {};
 
 let sequelize;
 if (config.use_env_variable) {
+  console.log('using env variables')
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
+}
+else if (process.env.DATABASE_URL) {
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialect: 'postgres',
+    protocol: 'postgres',
+    dialectOptions: {
+        ssl: true
+    }
+  });
+}
+else {
+  console.log('default')
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
