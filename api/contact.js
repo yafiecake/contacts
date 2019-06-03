@@ -4,7 +4,7 @@ module.exports = (app, db) => {
     res.json(contacts)
   })
 
-  app.get('/contacts/:id', async (req, res) => {
+  app.get('/api/contacts/:id', async (req, res) => {
     const contactId = req.params.id
     if (!Number.isInteger(parseInt(contactId))) {
       res.status(404).json({ error: 'not found' })
