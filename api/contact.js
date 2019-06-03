@@ -1,5 +1,5 @@
 module.exports = (app, db) => {
-  app.get('/contacts', async (req, res) => {
+  app.get('/api/contacts', async (req, res) => {
     const contacts = await db.contacts.findAll()
     res.json(contacts)
   })
@@ -21,7 +21,7 @@ module.exports = (app, db) => {
   })
 
   // Create new contact
-  app.post('/contacts', async (req, res) => {
+  app.post('/api/contacts', async (req, res) => {
     try {
       const {
         first_name,
@@ -44,7 +44,7 @@ module.exports = (app, db) => {
   })
 
   // Update contact
-  app.put('/contacts/:id', async (req, res) => {
+  app.put('/api/contacts/:id', async (req, res) => {
     try {
       const contactId = req.params.id
       if (!Number.isInteger(parseInt(contactId))) {
@@ -84,7 +84,7 @@ module.exports = (app, db) => {
   })
 
   // Delete contact
-  app.delete('/contacts/:id', async (req, res) => {
+  app.delete('/api/contacts/:id', async (req, res) => {
     try {
       const contact = await db.contacts.findByPk(req.params.id)
       if (!contact) {
